@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+  <title>UzbTime.uz | Ўзбекистон ва Жахон янгиликлари</title>
+</head>
+
+<body>
+  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>NAVBAR START<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+  <nav class="navbar is-transparent">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'home' %}">
+          <h3 class="title is-2 has-text-success" style="font-family:'Black Ops One',cursive;">UzbTime</h3>
+        </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item py-0 mr-6">
+            <form action="{% url 'search_results' %}" method="GET">
+              <div class="columns">
+                <div class="column is-10 search-inp">
+                  <div class="control">
+                    <input class="input is-success " style="border-radius:20px 0px 0px 20px;" type="text" name="search"
+                      placeholder="Қидирув">
+                  </div>
+                </div>
+                <div class="column" style="position:relative;right:20px;">
+
+                  <button class="button is-default has-text-white is-success search-btn"
+                    style="border-radius:0 20px 20px 0;"><strong>Қидирув</strong></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="buttons">
+            {% if not user.is_authenticated %}
+            <a class="button is-success" href="{% url 'sign_up' %}">
+              <strong>Рўйхатдан ўтиш</strong>
+            </a>
+            <a class="button is-success is-outlined" href="{% url 'login' %}">
+              <strong>Кириш</strong>
+            </a>
+            {% endif %}
+          </div>
+          {% if user.is_authenticated %}
+          <div class="navbar-item has-dropdown is-hoverable mr-5 user-p">
+            <a class="navbar-item py-0 px-6">
+              <h2 class="text is-size-2 has-text-success">
+                <i class="fa fa-user-circle-o" class="" aria-hidden="true"></i>
+                <span class="text is-size-4"><i class="fa fa-angle-down" style="position:relative;bottom:5px;"
+                    aria-hidden="true"></i></span>
+              </h2>
+            </a>
+
+            <div class="navbar-dropdown is-boxed">
+              <h5 class="navbar-item">
+                <span class="title is-5 mr-1 has-text-success">@</span> {{user.username}}
+              </h5>
+              <h5 class="navbar-item">
+                <i class="fa fa-user mr-1 has-text-success" aria-hidden="true"></i> {{user.first_name}}
+                {{user.last_name}}
+              </h5>
+              <h5 class="navbar-item">
+                <i class="fa fa-envelope-o mr-1 has-text-success" aria-hidden="true"></i> {{user.email}}
+              </h5>
+              <hr class="navbar-divider">
+              <a href="{% url 'logout' %}" class="navbar-item has-text-weight-bold has-text-danger">
+                <i class="fa fa-sign-out mr-1" aria-hidden="true"></i> Чиқиш
+              </a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>NAVBAR END<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+  {% block content %}
+
+  {% endblock %}
+
+  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>FOOTER<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+  <footer class="footer has-background-success px-0 py-0">
+    <div class="content">
+      <div class="columns is-hidden-mobile">
+        <div class="column is-7 pt-2">
+          <ul class="tabs title is-5 mt-0 has-text-weight-bold">
+            <li><a href="#" class="has-text-white pl-2">Биз хақимизда</a></li>
+            <li><a href="#" class="has-text-white">Алоқа</a></li>
+            <li><a href="#" class="has-text-white">Реклама</a></li>
+            <li><a href="#" class="has-text-white">UzbTime жамоаси</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-8 pt-0 mb-3 is-hidden-mobile">
+          <p class="ml-6 has-text-white">«UzbTime.uz» сайтида эълон қилинган материаллардан нусха кўчириш, тарқатиш ва
+            бошқа шаклларда фойдаланиш фақат таҳририят ёзма розилиги билан амалга оширилиши мумкин.
+            <br>Гувоҳнома: №0987. Берилган санаси: 22.06.2015 йил. Муассис: «WEB EXPERT» МЧЖ. Таҳририят манзили: 100043,
+            Тошкент шаҳри, К. Ёрматов кўчаси, 12-уй. Электрон манзил: info@UzbTime.uz.
+            <br>
+            Сайтда эълон қилинаётган муаллифлик мақолаларида келтирилган фикрлар муаллифга тегишли ва улар UzbTime.uz
+            таҳририяти нуқтаи назарини ифода этмаслиги мумкин
+          </p>
+        </div>
+        <div class="column is-4 pr-0">
+            <h3 class="title is-2 has-text-white foot-brand" style="font-family:'Black Ops One',cursive;">UzbTime</h3>
+          <div class="text is-size-3 has-text-centered">
+            <p class="animate-icons">
+              <a href="#"><i class="fa fa-youtube-play " aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-telegram pl-3" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-facebook pl-3" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-twitter pl-3" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-instagram pl-3" aria-hidden="true"></i></a>
+            </p>
+          </div>
+          <p class="foot-info has-text-white pl-3 pt-5"><span class="has-text-weight-bold">"UzbTime.uz"</span> developed by <a
+              href="#">Akhmedov</a> &copy;2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+<script src="{% static 'js/script.js' %}" defer></script>
+</body>
+
+</html>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>FOOTER END<<<<<<<<<<<<<<<<<<<<<<<<<< -->

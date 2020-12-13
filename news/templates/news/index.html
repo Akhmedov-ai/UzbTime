@@ -1,0 +1,240 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block content%}
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>TOP ADVERTISEMENT<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+{% for item in advert %}
+{% autoescape off %}
+<a href="{{item.slug}}" target="_blank">
+  <section class="section ad-banner" style="background:url({{item.image.url}});background-size:100% 100%;">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-5">
+          <h1 class="title is-1 has-text-success">{{item.brand}}</h1>
+          <h6 class="subtitle is-6 has-text-white">{{item.info}}</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+</a>
+{% endautoescape %}
+{% endfor %}
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>TOP ADVERTISEMENT<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CATEGORY<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+<section class="section pb-0 is-hidden-mobile">
+  <div class="container">
+    <div class="columns is-vcentered is-variable is-0">
+      {% for item in category %}
+      <div class="column has-text-centered">
+        <a href="{{item.get_absolute_url}}">
+          <h4 class="title is-4 has-text-grey">{{item.title}}</h4>
+        </a>
+      </div>
+      {% endfor %}
+      <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CATEGORY<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+    </div>
+  </div>
+</section>
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>LAST NEWS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+<section class="section">
+  <div class="container">
+    <h1 class="title is-2 has-text-grey-dark is-vcentered"><span class="text is-size-3"><i
+          class="fa fa-circle has-text-success" style="font-size:20px;position:relative;bottom: 3px;"
+          aria-hidden="true"></i> Охирги янгиликлар</span></h1>
+    <div class="columns clm">
+      {% for item in last_news %}
+      <div class="column is-3">
+        <a href="{{item.get_absolute_url}}">
+          <div class="card-image">
+            <figure class="image is-3by2">
+              <img src="{{item.image.url}}" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content px-0 py-4">
+            <div class="media mb-3">
+              <div class="media-content">
+                <p class="text is-size-6 pb-1 is-vcentered clmn has-text-grey"><i
+                    class="fa fa-calendar-o has-text-success" aria-hidden="true"></i>
+                  {{ item.created_at|date:"H:i/d.m.Y" }}</p>
+                <p class="subtitle is-6 has-text-weight-bold"><span class="txt-size">{{item.title|safe}}</span></p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="columns is-variable is-1 is-hidden-mobile" style="display:flex;flex-wrap:wrap;">
+      {% for item in secondary_news %}
+      <div class="column is-2">
+
+        <a href="{{ item.get_absolute_url }}">
+          <figure class="image is-3by2">
+            <img src="{{item.image.url}}" alt="">
+          </figure>
+      </div>
+      <div class="column is-2">
+        <div class="columns mb-0">
+          <div class="column pb-1 is-10 ml-2">
+            <p class="has-text-grey">
+              <i class="fa fa-calendar-o has-text-success" aria-hidden="true"></i> {{ item.created_at|date:"d.m.Y" }}
+              <i class="fa fa-eye ml-2 has-text-success" aria-hidden="true"></i></i> {{item.popular}}
+            </p>
+          </div>
+        </div>
+        {% autoescape off %}
+        <h1 class="title is-6 mt-0">{{item.title}}</h1>
+        {% endautoescape %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>LAST NEWS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>AVARAGE ADVERTISEMENT<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+{% for items in ad %}
+{% autoescape off %}
+<a href="{{items.slug}}" target="_blank">
+  <section class="section ad-baner"
+    style="background:url({{items.image.url}});background-size:100% 100%;height: 180px;">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-5">
+          <h1 class="title is-1 has-text-success">{{items.brand}}</h1>
+          <h6 class="subtitle is-6 has-text-white">{{items.info}}</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+</a>
+{% endautoescape %}
+{% endfor %}
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>AVARAGE ADVERTISEMENT<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>ALL NEWS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+<section class="section is-hidden-mobile">
+  <div class="container">
+    <h1 class="title is-2 has-text-grey-dark is-vcentered"><span class="text is-size-3"><i
+          class="fa fa-circle has-text-success" style="font-size:20px;position: relative;bottom: 3px;"
+          aria-hidden="true"></i> Барча янгиликлар</span></h1>
+    <div class="columns is-variable is-2" style="display: flex; flex-wrap: wrap;">
+      {% for item in all_news %}
+      <div class="column is-2">
+
+        <a href="{{item.get_absolute_url}}">
+          <figure class="image is-3by2">
+            <img src="{{item.image.url}}" alt="">
+          </figure>
+      </div>
+      <div class="column is-4">
+        <div class="columns mb-0">
+          <div class="column is-10 ml-2 pb-2">
+            <p class="has-text-grey">
+              <i class="fa fa-calendar-o has-text-success" aria-hidden="true"></i> {{ item.created_at|date:"d.m.Y" }}
+              <i class="fa fa-eye ml-2 has-text-success" aria-hidden="true"></i></i> {{item.popular}}
+            </p>
+          </div>
+        </div>
+        {% autoescape off %}
+        <h1 class="title is-5 mt-0">{{item.title}}</h1>
+        {% endautoescape %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>ALL NEWS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>ADVERT NEWS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+<section class="section mx-6 my-4 py-5" style="border: 2px dashed gray;">
+  <div class="container">
+    <h1 class="title is-2 has-text-grey-dark is-vcentered"><span class="text is-size-3"><i
+          class="fa fa-circle has-text-success" style="font-size:20px;position:relative;bottom: 3px;"
+          aria-hidden="true"></i> Реклама</span></h1>
+    <div class="columns clm" style="display:flex;flex-wrap:wrap;">
+      {% for item in news_ad %}
+      <div class="column is-3">
+        <a href="{{item.get_absolute_url}}">
+          <div class="card-image">
+            <figure class="image is-3by2">
+              <img src="{{item.image.url}}" alt="Placeholder image">
+            </figure>
+          </div>
+
+
+          <div class="card-content px-0 py-4">
+            <div class="media mb-3">
+              <div class="media-content">
+                <p class="text is-size-6 pb-1 has-text-grey clmn">
+                  <i class="fa fa-calendar-o has-text-success pr-1" aria-hidden="true"></i>
+                  {{ item.created_at|date:"H:i/d.m.Y" }}
+                  <i class="fa fa-eye has-text-success pl-2" aria-hidden="true"></i> {{item.popular}}
+                </p>
+                {% autoescape off %}
+                <p class="subtitle is-6 has-text-weight-bold">{{item.title}}</p>
+                {% endautoescape %}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>ADVERT NEWS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>PARTENERS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+<section class="section mb-4">
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-centered">
+        <h1 class="title is-2 pl-6 has-text-grey-dark "><span class="txt">Бизнинг ҳамкорларимиз</span></h1>
+        <hr class="has-background-grey-dark">
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/cnn.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/bbc.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/cbs.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/foxnews.png' %}" alt="">
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/sky.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/yahoo.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/nbc.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/theguardian.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>PARTENERS<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+{% endblock %}

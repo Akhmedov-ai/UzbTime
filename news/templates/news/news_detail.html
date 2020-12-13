@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+  <title>UzbTime.uz | Ўзбекистон ва Жахон янгиликлари</title>
+</head>
+
+<body>
+  <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>NAVBAR START<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+  <nav class="navbar is-transparent">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'home' %}">
+          <h3 class="title is-2 has-text-success" style="font-family:'Black Ops One',cursive;">UzbTime</h3>
+        </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu is-hidden-mobile">
+        <div class="navbar-end">
+          <div class="navbar-item py-0 mr-6">
+            <form action="{% url 'search_results' %}" method="GET">
+              <div class="columns">
+                <div class="column is-10 search-inp">
+                  <div class="control">
+                    <input class="input is-success " style="border-radius:20px 0px 0px 20px;" type="text" name="search"
+                      placeholder="Қидирув">
+                  </div>
+                </div>
+                <div class="column" style="position:relative;right:20px;">
+
+                  <button class="button is-default has-text-white is-success search-btn"
+                    style="border-radius:0 20px 20px 0;"><strong>Қидирув</strong></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="buttons">
+            {% if not user.is_authenticated %}
+            <a class="button is-success" href="{% url 'sign_up' %}">
+              <strong>Рўйхатдан ўтиш</strong>
+            </a>
+            <a class="button is-success is-outlined" href="{% url 'login' %}">
+              <strong>Кириш</strong>
+            </a>
+            {% endif %}
+          </div>
+          {% if user.is_authenticated %}
+          <div class="navbar-item has-dropdown is-hoverable mr-5 user-p">
+            <a class="navbar-item py-0 px-6">
+              <h2 class="text is-size-2 has-text-success">
+                <i class="fa fa-user-circle-o" class="" aria-hidden="true"></i>
+                <span class="text is-size-4"><i class="fa fa-angle-down" style="position:relative;bottom:5px;"
+                    aria-hidden="true"></i></span>
+              </h2>
+            </a>
+
+            <div class="navbar-dropdown is-boxed">
+              <h5 class="navbar-item">
+                <span class="title is-5 mr-1 has-text-success">@</span> {{user.username}}
+              </h5>
+              <h5 class="navbar-item">
+                <i class="fa fa-user mr-1 has-text-success" aria-hidden="true"></i> {{user.first_name}}
+                {{user.last_name}}
+              </h5>
+              <h5 class="navbar-item">
+                <i class="fa fa-envelope-o mr-1 has-text-success" aria-hidden="true"></i> {{user.email}}
+              </h5>
+              <hr class="navbar-divider">
+              <a href="{% url 'logout' %}" class="navbar-item has-text-weight-bold has-text-danger">
+                <i class="fa fa-sign-out mr-1" aria-hidden="true"></i> Чиқиш
+              </a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+{% for item in advert %}
+{% autoescape off %}
+<a href="{{item.slug}}" target="_blank">
+	<section class="section ad-banner" style="background:url({{item.image.url}});background-size:100% 100%;">
+		<div class="container">
+			<div class="columns">
+				<div class="column is-5">
+					<h1 class="title is-1 has-text-success">{{item.brand}}</h1>
+					<h6 class="subtitle is-6 has-text-white">{{item.info}}</h6>
+				</div>
+			</div>
+		</div>
+	</section>
+</a>
+{% endautoescape %}
+{% endfor %}
+<section class="section">
+	<div class="container">
+		<div class="columns">
+			<div class="column is-8  mr-2" style="border: 2px dashed gray;">
+				{% autoescape off %}
+				<div class="columns is-centered">
+					<div class="column is-10">
+						<h1 class="title is-3 has-text-weight-semibold mb-5 pb-3 ">{{news.title}}</h1>
+						<h5 class="subtitle is-5 has-text-weight-medium">{{news.description}}</h5>
+					</div>
+				</div>
+				<div class="columns is-centered">
+					<div class="column is-10">
+						<figure class="image">
+							<img src="{{news.image.url}}" alt="">
+						</figure>
+					</div>
+				</div>
+				<div class="columns is-centered">
+					<div class="column is-10">
+						<p class="text ">{{news.full_info}}</p>
+					</div>
+				</div>
+				<div class="columns is-centered mb-2">
+					<div class="column is-10">
+						<p class="text ">
+							<i class="fa fa-thumbs-up has-text-success is-size-5 " aria-hidden="true"></i> 6532
+							<i class="fa fa-thumbs-down has-text-danger is-size-5 ml-3" aria-hidden="true"></i> 324
+							<i class="fa fa-eye has-text-success ml-3" aria-hidden="true"></i> {{news.popular}}
+						</p>
+					</div>
+				</div>
+				<div class="columns is-centered ">
+					<div class="column is-10 mb-2">
+						<p class="text is-size-5">
+							<strong>Бу ва бошқа сўнги янгиликларни</strong> <a href="#" class="tg-line">Телеграм
+								сахифамизда кузатиб
+								боринг</a>
+						</p>
+					</div>
+				</div>
+				{% endautoescape %}
+			</div>
+			<div class="column is-4 is-hidden-mobile">
+				<aside class="menu">
+					{% for item in news_ad %}
+					<div class="columns is-centered">
+						<div class="column is-10">
+							<a href="{{item.get_absolute_url}}">
+								<div class="card-image">
+									<figure class="image">
+										<img src="{{item.image.url}}" alt="Placeholder image">
+									</figure>
+								</div>
+								<div class="card-content px-3 py-4">
+									<div class="media mb-3">
+										<div class="media-content">
+											<p class="text is-size-6 pb-1 has-text-grey"><i
+													class="fa fa-calendar-o has-text-success" aria-hidden="true"></i>
+												{{ item.created_at|date:"H:i/d.m.Y" }}
+												<i class="fa fa-eye has-text-success ml-3" aria-hidden="true"></i>
+												{{item.popular}}
+											</p>
+											{% autoescape off %}
+											<p class="subtitle is-6 has-text-weight-bold">{{item.title}}</p>
+											{% endautoescape %}
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+				</aside>
+			</div>
+		</div>
+		<h3 class="title is-3 ml-6 is-hidden-mobile">Комментарии</h3>
+		{% for comment in news.comments.all %}
+		<div class="columns is-hidden-mobile">
+			<div class="column is-7 ml-6">
+				<article class="media">
+					<div class="media-left">
+						<figure class="image is-64x64">
+							<img class="is-rounded" src="https://media.thequoteunquote.com/default-user-1494243238_350x300_.png"
+								alt="Image">
+						</figure>
+					</div>
+					<div class="media-content">
+						<div class="content mb-1">
+							<h4 class="title is-5 mx-0 my-1">
+								<strong>{{comment.username}}:</strong>
+							</h4>
+							<p class="text is-size-6 mx-0 my-0">{{ comment.text|slice:":120" }} ...</p>
+						</div>
+						<nav class="level is-mobile">
+							<div class="level-left">
+								<i class="fa fa-thumbs-up has-text-success is-size-5 mr-1" aria-hidden="true"></i> 43
+								<i class="fa fa-thumbs-down has-text-danger is-size-5 ml-3 mr-1" aria-hidden="true"></i> 11
+							</div>
+						</nav>
+					</div>
+				</article>
+			</div>
+		</div>
+		{% endfor %}
+		{% if user.is_authenticated %}
+		<div class="columns is-hidden-mobile">
+			<div class="column is-7 ml-6">
+				<form action="{% url 'leave_comment' news.slug %}" method="POST" class="form">
+					{% csrf_token %}
+					<input type="text" name="username" placeholder="Исм" class="input" value="{{ user.username }}">
+					<textarea name="text" id="comment" aria-required="true" placeholder="Изох"
+						class="textarea my-2"></textarea>
+					<div class="buttons navbar-end">
+						<button type="submit" class="button is-success">Юбориш</button>
+						<button type="reset" class="button is-danger">Бекор қилиш</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		{% endif %}
+		{% if not user.is_authenticated %}
+		<div class="columns is-hidden-mobile">
+			<div class="column is-5 ml-6">
+				<p class="text is-size-5 has-text-weight-semibold">Изоҳ қолдириш учун рўйхатдан ўтиш керак !</p>
+
+				<div class="navbar-end mt-2 mr-6">
+					<a class="button is-success is-outlined" href="{% url 'sign_up' %}">
+						<strong>Рўйхатдан ўтиш</strong>
+					</a>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</section>
+<footer class="footer has-background-success px-0 py-0">
+    <div class="content">
+      <div class="columns is-hidden-mobile">
+        <div class="column is-7 pt-2">
+          <ul class="tabs title is-5 mt-0 has-text-weight-bold">
+            <li><a href="#" class="has-text-white pl-2">Биз хақимизда</a></li>
+            <li><a href="#" class="has-text-white">Алоқа</a></li>
+            <li><a href="#" class="has-text-white">Реклама</a></li>
+            <li><a href="#" class="has-text-white">UzbTime жамоаси</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column is-8 pt-0 mb-3 is-hidden-mobile">
+          <p class="ml-6 has-text-white">«UzbTime.uz» сайтида эълон қилинган материаллардан нусха кўчириш, тарқатиш ва
+            бошқа шаклларда фойдаланиш фақат таҳририят ёзма розилиги билан амалга оширилиши мумкин.
+            <br>Гувоҳнома: №0987. Берилган санаси: 22.06.2015 йил. Муассис: «WEB EXPERT» МЧЖ. Таҳририят манзили: 100043,
+            Тошкент шаҳри, К. Ёрматов кўчаси, 12-уй. Электрон манзил: info@UzbTime.uz.
+            <br>
+            Сайтда эълон қилинаётган муаллифлик мақолаларида келтирилган фикрлар муаллифга тегишли ва улар UzbTime.uz
+            таҳририяти нуқтаи назарини ифода этмаслиги мумкин
+          </p>
+        </div>
+        <div class="column is-4 pr-0">
+            <h3 class="title is-2 has-text-white foot-brand" style="font-family:'Black Ops One',cursive;">UzbTime</h3>
+          <div class="text is-size-3 has-text-centered">
+            <p class="animate-icons">
+              <a href="#"><i class="fa fa-youtube-play " aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-telegram pl-3" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-facebook pl-3" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-twitter pl-3" aria-hidden="true"></i></a>
+              <a href="#"><i class="fa fa-instagram pl-3" aria-hidden="true"></i></a>
+            </p>
+          </div>
+          <p class="foot-info has-text-white pl-3 pt-5 is-hidden-mobile"><span class="has-text-weight-bold">"UzbTime.uz"</span> developed by <a
+              href="#">Akhmedov</a> &copy;2020</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

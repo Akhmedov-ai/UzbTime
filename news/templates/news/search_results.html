@@ -1,0 +1,140 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+{% for item in advert %}
+{% autoescape off %}
+<a href="{{item.slug}}" target="_blank">
+  <section class="section ad-banner" style="background:url({{item.image.url}});background-size:100% 100%;">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-5">
+          <h1 class="title is-1 has-text-success">{{item.brand}}</h1>
+          <h6 class="subtitle is-6 has-text-white">{{item.info}}</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+</a>
+{% endautoescape %}
+{% endfor %}
+<section class="section pb-0">
+  <div class="container">
+    <div class="columns is-variable is-0">
+      {% for item in category %}
+      <div class="column has-text-centered is-hidden-mobile">
+        <a href="{{item.get_absolute_url}}">
+          <h4 class="title is-4 has-text-grey">{{item.title}}</h4>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h1 class="title is-2 has-text-grey-dark is-vcentered"><span class="text is-size-3"><i
+          class="fa fa-circle has-text-success" style="font-size:20px;position:relative;bottom: 3px;"
+          aria-hidden="true"></i> Янгиликлар</span></h1>
+    <div class="columns" style="display:flex;flex-wrap:wrap;">
+      {% for item in search_obj %}
+      <div class="column is-3">
+        <a href="{{item.get_absolute_url}}">
+          <div class="card-image">
+            <figure class="image is-3by2">
+              <img src="{{item.image.url}}" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content px-3 py-4">
+            <div class="media mb-3">
+              <div class="media-content">
+                <p class="text is-size-6 pb-1 has-text-grey clmn"><i class="fa fa-calendar-o has-text-success"
+                    aria-hidden="true"></i> {{ item.created_at|date:"H:i/d.m.Y" }}</p>
+                {% autoescape off %}
+                <p class="subtitle is-6 has-text-weight-bold">{{item.title}}</p>
+                {% endautoescape %}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section mx-6 my-4 py-5" style="border: 2px dashed gray;">
+  <div class="container">
+    <h1 class="title is-2 has-text-grey-dark is-vcentered"><span class="text is-size-3"><i
+          class="fa fa-circle has-text-success" style="font-size:20px;position:relative;bottom: 3px;"
+          aria-hidden="true"></i> Реклама</span></h1>
+    <div class="columns" style="display:flex;flex-wrap:wrap;">
+      {% for item in news_ad %}
+      <div class="column is-3">
+        <a href="{{item.get_absolute_url}}">
+          <div class="card-image">
+            <figure class="image is-3by2">
+              <img src="{{item.image.url}}" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content px-3 py-4">
+            <div class="media mb-3">
+              <div class="media-content">
+                <p class="text is-size-6 pb-1 has-text-grey clmn"><i class="fa fa-calendar-o has-text-success"
+                    aria-hidden="true"></i> {{ item.created_at|date:"H:i/d.m.Y" }}
+                  <i class="fa fa-eye has-text-success ml-3" aria-hidden="true"></i> {{item.popular}}</p>
+                {% autoescape off %}
+                <p class="subtitle is-6 has-text-weight-bold">{{item.title}}</p>
+                {% endautoescape %}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section mb-4">
+  <div class="container">
+    <div class="columns">
+      <div class="column has-text-centered">
+        <h1 class="title is-2 pl-6 has-text-grey-dark "><span class="txt">Бизнинг ҳамкорларимиз</span></h1>
+        <hr class="has-background-grey-dark">
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/cnn.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/bbc.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/cbs.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/foxnews.png' %}" alt="">
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/sky.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/yahoo.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/nbc.png' %}" alt="">
+	  </div>
+	  <div class="column is-hidden-mobile is-1"></div>
+      <div class="column clom is-2">
+        <img class="img" src="{% static 'image/theguardian.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

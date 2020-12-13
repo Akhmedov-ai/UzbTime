@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <title>Sign up</title>
+</head>
+
+<body style="overflow: hidden;">
+    <section class="section my-0 mx-0 px-0 py-0">
+        <div class="columns">
+            <div class="column mt-5">
+                <a href="{% url 'home' %}"><i class="fa fa-chevron-left has-text-weight-bold has-text-success"
+                        style="position:relative;left:30px;" aria-hidden="true"></i></a>
+            </div>
+            <div class="column is-7">
+                <div class="hero form-hero is-fullheight">
+                    <div class="hero-body has-text-centered">
+                        <div class="columns is-centered">
+                            <div class="column is-5">
+                                <div class="columns is-centered">
+                                    <div class="column is-8">
+                                        <h3 class="title is-2 has-text-success"
+                                            style="font-family: 'Black Ops One', cursive;">UzbTime</h3>
+                                    </div>
+                                </div>
+                                <form action="{% url 'sign_up' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="control is-fullwidth">
+                                        {{form.first_name}}
+                                        {{form.last_name}}
+                                        {{form.username}}
+                                        {{form.email}}
+                                        {{form.password1}}
+                                        {{form.password2}}
+                                        <button type="submit"
+                                            class="button has-background-success has-text-white title is-6 is-fullwidth">Рўйхатдан
+                                            ўтиш</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-5 is-hidden-mobile hero-banner has-text-centered has-background-success">
+                <div class="hero is-fullheight">
+                    <div class="hero-body">
+                        <div class="container has-text-centered has-text-white">
+                            <div class="columns">
+                                <div class="column">
+                                    <h4 class="title is-4 has-text-white">Сизда аллақачон аккаунт борми?</h4>
+                                    <h6 class="subtitle is-5 has-text-white">Ўз аккаунтингизга киринг</h6>
+                                    <a class="button is-white has-text-success has-text-weight-bold"
+                                        href="{% url 'login' %}">Кириш</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
