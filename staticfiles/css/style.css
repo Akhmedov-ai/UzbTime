@@ -1,0 +1,255 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.ad-banner{
+    height:250px;
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:100% 100%; 
+}
+.search-btn{
+    position: relative;
+    right: 20px;
+    border-radius: 0 20px 20px 0;
+}
+.ad-baner{
+    width: auto;
+    height: auto;
+}
+.search-btn:active{
+    border: none;
+}
+.animate-icons{
+    width: 300px;
+    margin: 30px auto auto 15px;
+}
+.animate-icons i{
+    color: white;
+    transition-duration: .6s;
+
+}
+.animate-icons i:hover{
+    transform: translateY(-10px);
+    transition-duration: .7s;
+}
+.tg-line{
+    color: gray;
+}
+hr{
+    width:10%;
+    position:relative;
+    left: 45%;
+}
+.tg-line:hover{
+    text-decoration: underline;
+    color: #3273dc;
+}
+.clom{
+    display:flex;
+    justify-content:space-between;
+}
+@media screen and (max-width:375px){
+    .ad-banner{
+        width: auto;
+        height: 100px;
+    }
+    .ad-baner{
+        height: 50px !important;
+    }
+    .search-btn{
+        position: absolute;
+        top: -52px;
+        left: 275px !important;
+    }
+    .dis{
+        display: none;
+    }
+    .buttons{
+        position: relative;
+        top: -5px;
+        left: 95px !important;
+    }
+    .clom{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .foot-info{
+        position: relative;
+        bottom: 20px;
+    }
+}
+@media screen and (max-width:425px){
+    .ad-banner{
+        width: auto;
+        height: 130px;
+    }
+    .ad-baner{
+        height: 100px !important;
+        position: relative;
+        bottom: 40px;
+    }
+    .txt{
+        font-size: 34px;
+        padding: 0;
+        position: relative;
+        right: 25px;
+    }
+    hr{
+        width: 20%;
+        position: relative;
+        left: 40%;
+    }
+    .img{
+        width: 80%;
+        height: 270px;
+        margin: auto auto auto 10%;
+    }
+    .animate-icons{
+        margin: 0 0 10px 60px;
+    }
+    .foot-brand{
+        position: relative;
+        top: 25px;
+        left: 30px;
+    }
+    .search-btn{
+        position: absolute;
+        top: -64px;
+        left: 310px;
+    }
+    .buttons{
+        position: absolute;
+        top: 125px;
+        left: 145px;
+    } 
+    .foot-info{
+        position: relative;
+        bottom: 20px;
+        left: 25px;
+    }
+}
+@media screen and (min-width:426px) and (max-width:650px){
+    .clm{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .search-btn{
+        position: absolute;
+        top: -5px;
+        left: 260px;
+    }
+    .search-inp{
+        width: 270px;
+        position: absolute;
+        top: -5px;
+    }
+    .user-p{
+        position: absolute;
+        top: -55px;
+        left: 400px;
+    }
+    .buttons{
+        position: absolute;
+        left: 370px;
+        top: 65px;
+    }
+    .clmn{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .txt-size{
+        font-size: 13px;
+    }
+    .animate-icons{
+        position: relative;
+        top: 40px;
+        right: 20px;
+    }
+    .foot-info{
+        position: relative;
+        bottom: 20px;
+        left: 40%;
+    }
+    .foot-brand{
+        position: absolute;
+        left: 50px;
+        margin-top: 10px;
+    }
+    .img{
+        width: 60%;
+        height: 300px;
+        margin: auto auto auto 20%;
+    }
+    .clmn{
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+}
+@media screen and (min-width:651px) and (max-width:768px){
+    .clm{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .search-btn{
+        position: absolute;
+        top: -5px;
+        left: 400px;
+    }
+    .search-inp{
+        width: 420px;
+        position: absolute;
+        top: -5px;
+    }
+    .user-p{
+        position: absolute;
+        top: -55px;
+        left: 550px;
+    }
+    .buttons{
+        position: absolute;
+        left: 370px;
+        top: 65px;
+    }
+    .clmn{
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .txt-size{
+        font-size: 13px;
+    }
+    .animate-icons{
+        position: relative;
+        top: 40px;
+        right: 20px;
+    }
+    .foot-info{
+        position: relative;
+        bottom: 20px;
+        left: 40%;
+    }
+    .foot-brand{
+        position: absolute;
+        left: 50px;
+        margin-top: 10px;
+    }
+    .dsp{
+        display: none;
+    }
+    .clom{
+        margin-left: 20%;
+    }
+    .clmn{
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+}
+@media screen and (min-width:769px){
+    .foot-brand{
+        display: none;
+    }
+}
+
